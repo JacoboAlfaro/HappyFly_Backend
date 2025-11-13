@@ -22,6 +22,10 @@ export class Hotel {
 
   @Prop({ required: true })
   huespedes: number;
+
+  @Prop({ required: true })
+  imagen: string;
+
 }
 
 export const HotelSchema = SchemaFactory.createForClass(Hotel);

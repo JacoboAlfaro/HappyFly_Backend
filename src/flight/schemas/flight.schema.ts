@@ -23,8 +23,11 @@ export class Flight {
   @Prop({ required: true })
   pasajero: number;
 
-  @Prop()
-  aerolinea?: string;
+  @Prop({ required: true})
+  aerolinea: string;
+  
+  @Prop({ requiere: true})
+  imagen: string;
 }
 
 export const FlightSchema = SchemaFactory.createForClass(Flight);
