@@ -66,7 +66,11 @@ export class AuthService {
     return {
       id: user._id.toString(),
       nombre: user.nombre,
-      apellido1: user.apellido,
+      apellido1: user.apellido1,
+      apellido2: user.apellido2,
+      fechaNacimiento: user.fechaNacimiento,
+      sexo: user.sexo,
+      role: user.role,
       email: user.email,
     };
   }
