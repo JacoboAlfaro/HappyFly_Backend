@@ -10,7 +10,7 @@ import { HotelModule } from './hotel/hotel.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot(process.env.MONGO_URI!),    
+    MongooseModule.forRoot(process.env.MONGO_URI!),
     AuthModule,
     FlightModule,
     HotelModule,

@@ -12,10 +12,10 @@ export class Flight {
   destino: string;
 
   @Prop({ required: true })
-  fechaIda: Date;       
-  
+  fechaIda: Date;
+
   @Prop({ required: true })
-  fechaVuelta: Date; 
+  fechaVuelta: Date;
 
   @Prop({ required: true })
   precio: number;
@@ -23,12 +23,11 @@ export class Flight {
   @Prop({ required: true })
   pasajero: number;
 
-  @Prop({ required: true})
+  @Prop({ required: true })
   aerolinea: string;
-  
-  @Prop({ requiere: true})
+
+  @Prop({ requiere: true })
   imagen: string;
 }
 
 export const FlightSchema = SchemaFactory.createForClass(Flight);
-

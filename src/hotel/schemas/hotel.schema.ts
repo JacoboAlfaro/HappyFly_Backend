@@ -12,10 +12,10 @@ export class Hotel {
   nombreHotel: string;
 
   @Prop({ required: true })
-  fechaLlegada: Date;         
-  
+  fechaLlegada: Date;
+
   @Prop({ required: true })
-  fechaSalida: Date;     
+  fechaSalida: Date;
 
   @Prop({ required: true })
   precio: number;
@@ -25,7 +25,6 @@ export class Hotel {
 
   @Prop({ required: true })
   imagen: string;
-
 }
 
 export const HotelSchema = SchemaFactory.createForClass(Hotel);
