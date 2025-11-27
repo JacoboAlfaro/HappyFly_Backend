@@ -12,10 +12,22 @@ export class User {
   nombre: string;
 
   @Prop({ required: true })
-  apellido: string;
+  apellido1: string;
+
+  @Prop({ required: true })
+  apellido2: string;
+
+  @Prop({ required: true, type: Date })
+  fechaNacimiento: Date;
+
+  @Prop({ required: true, enum: ['M', 'F'] })
+  sexo: string;
 
   @Prop({ required: true, unique: true, lowercase: true })
   email: string;
+
+  @Prop({ required: true, enum: ['admin', 'user', 'vendedor'] })
+  role: string;
 
   @Prop({ required: true })
   password: string;
