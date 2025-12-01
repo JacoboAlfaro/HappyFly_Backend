@@ -28,6 +28,9 @@ export class Flight {
 
   @Prop({ requiere: true })
   imagen: string;
+
+  @Prop({ requiere: true})
+  descripcion: string;
 }
 
 export const FlightSchema = SchemaFactory.createForClass(Flight);
