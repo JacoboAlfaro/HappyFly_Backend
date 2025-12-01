@@ -34,11 +34,12 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/eslint-disable-next-line prettier/prettier': 'off',
       'prettier/prettier': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': 'off',
       'no-multiple-empty-lines': ['warn', { max: 1, maxEOF: 0 }],
       'no-trailing-spaces': 'off',
       'padded-blocks': 'off',
       'object-curly-spacing': ['error', 'always'],
+      "@typescript-eslint/no-unsafe-return": "off",
     },
   },
 );
