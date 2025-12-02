@@ -31,6 +31,9 @@ export class Flight {
 
   @Prop({ requiere: true})
   descripcion: string;
+
+  @Prop({ type: [Number], default: [] })
+  asientosReservados: number[];
 }
 
 export const FlightSchema = SchemaFactory.createForClass(Flight);

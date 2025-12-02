@@ -12,7 +12,7 @@ import { Hotel, HotelDocument } from './schemas/hotel.schema';
 export class HotelService {
   constructor(
     @InjectModel(Hotel.name) private hoteltModel: Model<HotelDocument>,
-  ) {}
+  ) { }
 
   async create(hotel: Partial<Hotel>): Promise<Hotel> {
     try {
@@ -55,5 +55,36 @@ export class HotelService {
       throw new NotFoundException('Hotel con id ${id} no encontrado');
     }
     return { message: 'Hotel con id ${id} eliminado correctamente' };
+  }
+
+  async findByUbicacion(destino: string): Promise<Hotel[]> {
+    if (!destino) return [];
+
+    const normalizedUbicacion = destino
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim()
+      .toLowerCase();
+
+    const hoteles = await this.hoteltModel.find().exec();
+
+    const coincidencias = hoteles.filter((hotel) => {
+      const hotelDestino = hotel.destino
+        ?.normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim()
+        .toLowerCase();
+
+      return (
+        hotelDestino?.includes(normalizedUbicacion) ||
+        normalizedUbicacion.includes(hotelDestino)
+      );
+    });
+
+    console.log(
+      `Buscando hoteles para "${destino}" — encontrados: ${coincidencias.length}`,
+    );
+
+    return coincidencias;
   }
 }
