@@ -39,7 +39,7 @@ export default tseslint.config(
       'no-trailing-spaces': 'off',
       'padded-blocks': 'off',
       'object-curly-spacing': ['error', 'always'],
-      "@typescript-eslint/no-unsafe-return": "off",
+      '@typescript-eslint/no-unsafe-return': 'off',
     },
   },
 );

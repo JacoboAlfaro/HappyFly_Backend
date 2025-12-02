@@ -11,7 +11,8 @@ import { Experience, ExperienceDocument } from './schemas/experience.schema';
 @Injectable()
 export class ExperienceService {
   constructor(
-    @InjectModel(Experience.name) private experienceModel: Model<ExperienceDocument>,
+    @InjectModel(Experience.name)
+    private experienceModel: Model<ExperienceDocument>,
   ) {}
 
   async create(experience: Partial<Experience>): Promise<Experience> {
@@ -39,7 +40,10 @@ export class ExperienceService {
     return experience;
   }
 
-  async update(id: string, experience: Partial<Experience>): Promise<Experience> {
+  async update(
+    id: string,
+    experience: Partial<Experience>,
+  ): Promise<Experience> {
     const updatedExperience = await this.experienceModel
       .findByIdAndUpdate(id, experience, { new: true })
       .exec();
@@ -50,7 +54,9 @@ export class ExperienceService {
   }
 
   async delete(id: string): Promise<{ message: string }> {
-    const deletedExperience = await this.experienceModel.findByIdAndDelete(id).exec();
+    const deletedExperience = await this.experienceModel
+      .findByIdAndDelete(id)
+      .exec();
     if (!deletedExperience) {
       throw new NotFoundException(`Experiencia con id ${id} no encontrada`);
     }

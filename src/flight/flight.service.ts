@@ -17,8 +17,10 @@ export class FlightService {
   async create(flight: Partial<Flight>): Promise<Flight> {
     try {
       const newFlight = new this.flightModel(flight);
+
       return await newFlight.save();
     } catch (error) {
+      console.log(error);
       throw new BadRequestException('Error al crear el vuelo');
     }
   }

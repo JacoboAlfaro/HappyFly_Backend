@@ -29,7 +29,7 @@ export class Flight {
   @Prop({ requiere: true })
   imagen: string;
 
-  @Prop({ requiere: true})
+  @Prop({ requiere: true })
   descripcion: string;
 }
 

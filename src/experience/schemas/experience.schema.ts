@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type ExperienceDocument = Experience & Document & { _id: Types.ObjectId };
+export type ExperienceDocument = Experience &
+  Document & { _id: Types.ObjectId };
 
 @Schema({ collection: 'experiences' })
 export class Experience {
