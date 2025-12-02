@@ -41,4 +41,9 @@ export class HotelController {
   async delete(@Param('id') id: string): Promise<{ message: string }> {
     return this.hotelService.delete(id);
   }
+
+  @Get('location/:destino')
+  async getByUbicacion(@Param('destino') destino: string) {
+    return this.hotelService.findByUbicacion(destino);
+  }
 }

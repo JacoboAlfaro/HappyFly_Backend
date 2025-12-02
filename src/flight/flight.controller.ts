@@ -12,7 +12,7 @@ import { Flight } from './schemas/flight.schema';
 
 @Controller('flight')
 export class FlightController {
-  constructor(private readonly flightService: FlightService) {}
+  constructor(private readonly flightService: FlightService) { }
 
   @Post('create')
   async create(@Body() body: Partial<Flight>): Promise<Flight> {
@@ -41,4 +41,18 @@ export class FlightController {
   async delete(@Param('id') id: string): Promise<{ message: string }> {
     return this.flightService.delete(id);
   }
+
+  @Get('location/:destino')
+  async getByUbicacion(@Param('destino') destino: string) {
+    return this.flightService.findByUbicacion(destino);
+  }
+
+  @Put('asientos/:id')
+  async updateAsientos(
+    @Param('id') id: string,
+    @Body('asientos') asientos: number[],
+  ) {
+    return this.flightService.updateAsientos(id, asientos);
+  }
+
 }

@@ -12,7 +12,7 @@ import { Flight, FlightDocument } from './schemas/flight.schema';
 export class FlightService {
   constructor(
     @InjectModel(Flight.name) private flightModel: Model<FlightDocument>,
-  ) {}
+  ) { }
 
   async create(flight: Partial<Flight>): Promise<Flight> {
     try {
@@ -58,4 +58,46 @@ export class FlightService {
     }
     return { message: 'Vuelo con id ${id} eliminado correctamente' };
   }
+
+  async findByUbicacion(destino: string): Promise<Flight[]> {
+    if (!destino) return [];
+
+    const normalizedUbicacion = destino
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim()
+      .toLowerCase();
+
+    const vuelos = await this.flightModel.find().exec();
+
+    const coincidencias = vuelos.filter((vuelo) => {
+      const vueloDestino = vuelo.destino
+        ?.normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .trim()
+        .toLowerCase();
+
+      return (
+        vueloDestino?.includes(normalizedUbicacion) ||
+        normalizedUbicacion.includes(vueloDestino)
+      );
+    });
+
+    console.log(
+      `Buscando vuelos para "${destino}" — encontrados: ${coincidencias.length}`,
+    );
+
+    return coincidencias;
+  }
+
+  async updateAsientos(id: string, asientos: number[]) {
+    const vuelo = await this.flightModel.findById(id);
+    if (!vuelo) throw new NotFoundException(`Vuelo con id ${id} no encontrado`);
+
+    vuelo.asientosReservados = asientos;
+    await vuelo.save();
+
+    return vuelo;
+  }
+
 }
