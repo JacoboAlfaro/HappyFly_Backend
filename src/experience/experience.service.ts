@@ -32,6 +32,16 @@ export class ExperienceService {
     }
   }
 
+  async findByVendedorId(vendedorId: string): Promise<Experience[]> {
+    try {
+      return await this.experienceModel.find({ vendedorId }).exec();
+    } catch (error) {
+      throw new BadRequestException(
+        'Error al obtener las experiencias del vendedor',
+      );
+    }
+  }
+
   async findById(id: string): Promise<Experience> {
     const experience = await this.experienceModel.findById(id).exec();
     if (!experience) {

@@ -31,6 +31,16 @@ export class PackageService {
     }
   }
 
+  async findByVendedorId(vendedorId: string): Promise<Package[]> {
+    try {
+      return await this.packageModel.find({ vendedorId }).exec();
+    } catch (error) {
+      throw new BadRequestException(
+        'Error al obtener los paquetes del vendedor',
+      );
+    }
+  }
+
   async findById(id: string): Promise<Package> {
     const packageData = await this.packageModel.findById(id).exec();
     if (!packageData) {

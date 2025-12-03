@@ -24,6 +24,13 @@ export class PackageController {
     return this.packageService.findAll();
   }
 
+  @Get('vendedor/:vendedorId')
+  async findByVendedorId(
+    @Param('vendedorId') vendedorId: string,
+  ): Promise<Package[]> {
+    return this.packageService.findByVendedorId(vendedorId);
+  }
+
   @Get('id/:id')
   async findById(@Param('id') id: string): Promise<Package> {
     return this.packageService.findById(id);

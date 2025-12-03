@@ -24,6 +24,13 @@ export class ExperienceController {
     return this.experienceService.findAll();
   }
 
+  @Get('vendedor/:vendedorId')
+  async findByVendedorId(
+    @Param('vendedorId') vendedorId: string,
+  ): Promise<Experience[]> {
+    return this.experienceService.findByVendedorId(vendedorId);
+  }
+
   @Get('id/:id')
   async findById(@Param('id') id: string): Promise<Experience> {
     return this.experienceService.findById(id);

@@ -37,6 +37,14 @@ export class UserService {
     };
   }
 
+  async getByRole(role: string): Promise<UserDAO[]> {
+    const users = await this.userModel.find({ role }).lean<UserDAO[]>();
+    return users.map((user) => ({
+      ...user,
+      _id: user._id.toString(),
+    }));
+  }
+
   // Actualizar la información de un usuario
   async updateUser(id: string, dto: UserDTO): Promise<UserDAO> {
     const updatedUser = await this.userModel

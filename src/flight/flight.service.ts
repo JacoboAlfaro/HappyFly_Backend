@@ -12,7 +12,7 @@ import { Flight, FlightDocument } from './schemas/flight.schema';
 export class FlightService {
   constructor(
     @InjectModel(Flight.name) private flightModel: Model<FlightDocument>,
-  ) { }
+  ) {}
 
   async create(flight: Partial<Flight>): Promise<Flight> {
     try {
@@ -30,6 +30,14 @@ export class FlightService {
       return await this.flightModel.find().exec();
     } catch (error) {
       throw new BadRequestException('Error al obtener los vuelos');
+    }
+  }
+
+  async findByVendedorId(vendedorId: string): Promise<Flight[]> {
+    try {
+      return await this.flightModel.find({ vendedorId }).exec();
+    } catch (error) {
+      throw new BadRequestException('Error al obtener los vuelos del vendedor');
     }
   }
 
@@ -99,5 +107,4 @@ export class FlightService {
 
     return vuelo;
   }
-
 }

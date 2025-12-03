@@ -24,6 +24,13 @@ export class HotelController {
     return this.hotelService.findAll();
   }
 
+  @Get('vendedor/:vendedorId')
+  async findByVendedorId(
+    @Param('vendedorId') vendedorId: string,
+  ): Promise<Hotel[]> {
+    return this.hotelService.findByVendedorId(vendedorId);
+  }
+
   @Get('id/:id')
   async findById(@Param('id') id: string): Promise<Hotel> {
     return this.hotelService.findById(id);

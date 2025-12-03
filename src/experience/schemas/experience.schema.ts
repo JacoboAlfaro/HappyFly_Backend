@@ -32,6 +32,9 @@ export class Experience {
 
   @Prop({ required: false })
   categoria?: string;
+
+  @Prop({ required: false })
+  vendedorId?: Types.ObjectId;
 }
 
 export const ExperienceSchema = SchemaFactory.createForClass(Experience);

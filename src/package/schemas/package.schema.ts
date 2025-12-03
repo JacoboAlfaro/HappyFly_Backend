@@ -25,6 +25,9 @@ export class Package {
 
   @Prop({ type: [String], default: [] })
   imagenes: string[];
+
+  @Prop({ required: false })
+  vendedorId?: Types.ObjectId;
 }
 
 export const PackageSchema = SchemaFactory.createForClass(Package);

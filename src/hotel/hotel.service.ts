@@ -12,13 +12,15 @@ import { Hotel, HotelDocument } from './schemas/hotel.schema';
 export class HotelService {
   constructor(
     @InjectModel(Hotel.name) private hoteltModel: Model<HotelDocument>,
-  ) { }
+  ) {}
 
   async create(hotel: Partial<Hotel>): Promise<Hotel> {
     try {
+      console.log(hotel);
       const newHotel = new this.hoteltModel(hotel);
       return await newHotel.save();
     } catch (error) {
+      console.log(error);
       throw new BadRequestException('Error al crear el hotel');
     }
   }
@@ -28,6 +30,16 @@ export class HotelService {
       return await this.hoteltModel.find().exec();
     } catch (error) {
       throw new BadRequestException('Error al obtener los hoteles');
+    }
+  }
+
+  async findByVendedorId(vendedorId: string): Promise<Hotel[]> {
+    try {
+      return await this.hoteltModel.find({ vendedorId }).exec();
+    } catch (error) {
+      throw new BadRequestException(
+        'Error al obtener los hoteles del vendedor',
+      );
     }
   }
 

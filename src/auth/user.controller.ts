@@ -26,6 +26,12 @@ export class UserController {
     return this.userService.getById(id);
   }
 
+  // Obtener usuarios por rol
+  @Get('role/:role')
+  getByRole(@Param('role') role: string): Promise<UserDAO[]> {
+    return this.userService.getByRole(role);
+  }
+
   // Crear un nuevo usuario
   @Post()
   create(@Body() userDto: any): Promise<UserDAO> {

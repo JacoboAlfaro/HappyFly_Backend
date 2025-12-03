@@ -23,8 +23,11 @@ export class Hotel {
   @Prop({ required: true })
   huespedes: number;
 
-  @Prop({ required: true })
-  imagen: string;
+  @Prop({ type: [String], default: [] })
+  imagen: string[];
+
+  @Prop({ required: false })
+  vendedorId?: Types.ObjectId;
 }
 
 export const HotelSchema = SchemaFactory.createForClass(Hotel);
