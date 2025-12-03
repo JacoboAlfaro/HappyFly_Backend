@@ -74,4 +74,13 @@ export class UserService {
     const result = await this.userModel.findByIdAndDelete(id);
     if (!result) throw new NotFoundException('Usuario no encontrado');
   }
+
+  async getProfile(userId: string): Promise<UserDAO> {
+    const user = await this.userModel.findById(userId).lean<UserDAO>();
+    if (!user) throw new NotFoundException('Usuario no encontrado');
+    return {
+      ...user,
+      _id: user._id.toString(),
+    };
+  }
 }
