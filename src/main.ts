@@ -17,7 +17,8 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: ['http://localhost:3000'],
+    origin: ['https://happy-1qsdph16b-jacobos-projects-9438f835.vercel.app', 'https://happy-fly-omega.vercel.app'],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   });
 

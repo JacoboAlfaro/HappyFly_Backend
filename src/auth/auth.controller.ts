@@ -33,8 +33,8 @@ export class AuthController {
     // Guardar JWT en cookies HttpOnly
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: false, // ⚠️ true en producción con HTTPS
-      sameSite: 'strict',
+      secure: true, // ⚠️ true en producción con HTTPS
+      sameSite: 'none',
       maxAge: Number(process.env.COOKIE_MAX_AGE) || 60 * 60 * 1000, // 1 hora
     });
 
