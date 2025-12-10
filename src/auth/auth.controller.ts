@@ -36,7 +36,7 @@ export class AuthController {
       secure: true, // ⚠️ true en producción con HTTPS
       sameSite: 'none',
       path: "/",
-
+      domain: '.happyfly.site',
       maxAge: Number(process.env.COOKIE_MAX_AGE) || 60 * 60 * 1000, // 1 hora
     });
 

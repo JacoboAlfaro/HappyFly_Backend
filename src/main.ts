@@ -24,7 +24,8 @@ async function bootstrap() {
       'https://www.happyfly.site',
       'https://happy-fly-omega.vercel.app',
       'http://localhost:3000',
-      'https://localhost:3000'
+      'https://localhost:3000',
+      'https://app.happyfly.site'
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
