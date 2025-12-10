@@ -6,9 +6,12 @@ import {
   Body,
   Put,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UserService } from './user.service'; // Importa el servicio UserService
 import { UserDAO, UserDTO } from './interfaces/user.dto';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Controller('user')
 export class UserController {
@@ -57,5 +60,11 @@ export class UserController {
   @Delete(':id')
   remove(@Param('id') id: string): Promise<void> {
     return this.userService.remove(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  async getProfile(@Req() req) {
+    return this.userService.getById(req.user._id);
   }
 }

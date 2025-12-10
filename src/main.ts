@@ -11,9 +11,10 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
+      whitelist: false,
+      forbidNonWhitelisted: false,
       transform: true,
+      enableDebugMessages: true,
     }),
   );
 
@@ -29,6 +30,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-  await app.listen(process.env.PORT ?? 4000);
+  await app.listen(4000);
+  console.log("🚀 Backend corriendo en http://localhost:4000");
 }
 bootstrap();

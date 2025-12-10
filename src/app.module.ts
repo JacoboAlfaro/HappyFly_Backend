@@ -8,6 +8,7 @@ import { FlightModule } from './flight/flight.module';
 import { HotelModule } from './hotel/hotel.module';
 import { PackageModule } from './package/package.module';
 import { ExperienceModule } from './experience/experience.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ExperienceModule } from './experience/experience.module';
     HotelModule,
     PackageModule,
     ExperienceModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
